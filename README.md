@@ -1,13 +1,9 @@
 <div align="center">
-    <img alt="dva-boot-admin" src="https://user-images.githubusercontent.com/1697158/49214902-8f888180-f402-11e8-8207-84d5cdf9d9bf.png" width="140">
+    <img width="200" alt="micro front-end portal" src="resources/images/logo.png">
 </div>
 
 <h1 align="center">Micro front-end portal</h1>
-
 ----
-
-
-<div align=center>小伙伴们嗨起来～～</div>
 
 <div align="center">
   <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg">
@@ -16,18 +12,18 @@
 
 # Micro front-end portal
 
-目前在开发阶段，逐步完善中。
+致力于打造一个跨框架、子应用可独立运行部署的微前端架构。
 
 
 ## ⌨️ Development
 
 
-主要应用<font color=red>React、Redux</font>开发
+通过<font color=red>NodeJS、Webpack</font>生成及支持二次构建多个SPA应用，基于<font color=red>single-spa、systemJS</font>实现此方案。
 
 ## 📦 Install
 
 ```bash
-$ git clone git@gitlab.chinac.com:shacong/micro-frontends-portal.git
+$ git clone git@github.com:squallvince/micro-frontend-portal.git
 $ cd micro-frontends-portal
 $ npm run installs
 $ npm run start
@@ -35,53 +31,50 @@ $ npm run start
 
 ## ✨ Features
 1. [single-spa](https://single-spa.js.org/)
-2. [SystemJS](https://github.com/systemjs/systemjs)
+2. [systemJS](https://github.com/systemjs/systemjs)
 
 ## 🌍 功能
-- **通过Webpack同时启动多个项目，将项目做为子模块注入**，项目就是组件，组件还是组件
-- **通过Single-spa与SystemJs实现dom的注入与卸载**，切换项目的时候可以从当前的dom结构中去掉
-- **Eslint约束规范**，根据antd与react官网的开发规范定义
-- **Node一键执行安装依赖以及启动与打包**，可以动态选择性的去打包与构建所需要的模块
-- **Redux消息总线**，项目之间通过redux实现数据共享
-- **集成了antd组件库以适用所有子项目**，所有项目可以按需引用antd组件库，UI组件样式可以根据项目风格自由搭配
-- **开发语言使用TS使开发更加具有约束性**，无论是开发或者维护的时候可以更方便的排查到问题
-- **代理**
-- 
-- 更多……
+- **通过Webpack同时启动多个子项目并注入**
+- **通过single-spa与systemJs实现dom的注入与卸载**
+- **Eslint约束规范**
+- **NodeJS动态选择需要启动或打包的子项目**
+- **路由分发及消息总线**
+- **集成antd组件库**
+
+## 架构
+<img alt="micro front-end portal" src="resources/images/frames.png">
 
 ## 工程结构
 ```
 .
-├── build                    			# 打包生成的文件
-├── config                   			# 应用注册配置文件以及启动生成的文件所在
-├── core                     			# 主文件的放置目录
-├── libs                     			# 主文件静态资源（systemjs等）的放置目录
-├── projects                 			# 放置子项目的文件夹
-│   ├── [name]						  # demo项目示例
-│   │   ├── config					# 子项目-主要项目配置 （适配壳子）        
-│   │   │   ├── project.json		  # 子项目-配置文件    （适配壳子）
-│   │   ├── src						# 子项目-自身项目文件文件夹
-│   │   │   ├── *****
-│   │   │   ├── [name].js			  # 子项目-使用single-spa包装子项目  （适配壳子）
-│   │   │   ├── store.js			  # 子项目-使用redux的项目配置，需暴露storeInstance（store）（适配壳子-非必要）
-│   │   │   ├── *****
-│   │   ├── webpacks					# 子项目-构建特定的适配壳子的文件目录  （适配壳子）
-│   │   │   ├── webpack.config.js	  # 子项目-启动或者打包文件  （适配壳子）
-│   │   │   ├── webpack.dev.js		  # 子项目-webpack热启动文件（适配壳子）
-├── scripts                  			# 安装依赖，启动项目以及打包构建的文件目录
+├── build                    			# 打包后生成目录
+├── config                   			# 配置信息目录
+├── core                     			# 核心库（request/utils/register……）
+├── libs                     			# 第三方资源库目录
+├── projects                 			# 子项目目录
+│   ├── [name]				        # demo项目示例
+│   │   ├── config				# 子项目-项目配置目录        
+│   │   │   ├── project.json		        # 子项目-配置文件
+│   │   ├── src				        # 子项目-源代码目录
+│   │   │   ├── [name].js			# 子项目-入口文件
+│   │   │   ├── store.js			# 子项目-用于暴露给框架的存储文件（非必要）
+│   │   ├── webpacks				# 子项目-开发及生产webpack配置目录
+│   │   │   ├── webpack.common.js	        # 子项目-公用webpack配置
+│   │   │   ├── webpack.dev.js		        # 子项目-开发环境配置
+│   │   │   ├── webpack.prod.js		        # 子项目-生产环境配置
+├── resources                                   # 用于美化readme的资源目录
+├── scripts                  			# NodeJS脚本（开发/生产/二次构建）
 ├── src                      			# 主程序目录
-│   ├── base.js             		  # single-spa启动文件（包含注册应用）
-│   ├── GlobalEventDistributor.js	  # redux全局注册暴露出来的类
-│   ├── index.html           		  # 打包文件js应用展示容器
-│   ├── register.js             	  # 暴露注册应用以及处理history的方法
-│   ├── styles.css					  # 全局样式文件（可抽离）
-├── webpacks        				    # webpack相关文件夹
-│   ├── insertHtmlCode.js 			  # 插入页面js的webpack插件
-│   ├── webpack.config.js 			  # 主项目通过webpack构建以及打包文件
-│   ├── webpack.dev.js 				  # 主项目通过webpack热启动文件
+│   ├── template           		        # 模块目录
+│   ├── base.js             		        # 基数代码（注册已选择的子项目）
+├── webpacks        				# 开发及生产webpack配置目录
+│   ├── insertHtmlCode.js 		        # 开发环境插入页面js的webpack插件
+│   ├── webpack.common.js 			# 公用webpack配置
+│   ├── webpack.dev.js 				# 开发环境配置
+│   ├── webpack.prod.js 			# 生产环境配置
 ├── .babelrc                 			
 ├── .eslintignore                 
-├── .eslintrc.js   					# eslint规则文件              
+├── .eslintrc.js   				# eslint规则文件              
 ├── .gitignore                 			
 ├── package.json  
 ├── README.md    
@@ -91,14 +84,25 @@ $ npm run start
 
 ## 简要说明
 
-* 上述工程结构中，需要将子项目在projects文件夹中clone下来，然后按照上面文件要求添加 ***适配壳子*** 的文件
-* 项目示例中有demo1的示例，可以按照demo1配置自己的项目
-* 在执行 <font color=red>`npm run installs`</font> 的时候项目会自动为主项目以及子项目安装各自的依赖
-* 在执行 <font color=red>`npm run start`</font> 的时候项目会为主项目以及子项目各自启动一个端口，这个端口是在每个项目的project.json里面配置的
-* 如果需要打包启动单独的子项目，可以执行 <font color=red>`npm run start [name]`</font> 后面可以跟多个参数，参数即是子项目名称
-* <font color=red>为了不影响子项目单独使用，建议针对适配壳子的文件单独开发，保证作用单一</font>
-* 如果项目中没有用到redux，store.js不是必要的文件
-* 每个子项目必须安装 <font color=red>single-spa-react</font> 使single-spa可以正常加载
+* 需要适配的子项目请到projects文件夹中git clone下来，并按照上面文件要求添加 ***适配*** 的文件。
+* 目前子项目目录中有login和frames，可以参考其配置来处理自己添加的子项目。
+  {
+    "name": "name", //模块名称
+      "prefix": "/module-prefix/", //模块文件路径前缀
+      "main": "/module-prefix/main.js", //模块入口文件
+      "store": "module-prefix/store.js", //模块消息总线的文件
+      "externalCss": true, //是否要输出单独的css文件，文件名和模块名称一致
+      "vendors": true, //是否要分离第三方库，参考该项目的webpack.prod.js配置
+      "runtime": true, //如果分离第三方库请加上runtime
+      "port": 8111, //开发环境所占用的端口号
+      "base": true //是否作为基础模块运行及打包
+      // 当模块被定性为base的时候, 子项目会一直加载
+    }
+* 项目clone到本地请先执行 <font color=red>npm run installs</font> 为所有项目安装各自依赖。
+* 安装依赖后执行 <font color=red>npm run start</font> 启动主项目及子项目，请保证配置文件中的端口号是不同的。
+* 如果需要启动或打包单独的子项目，可以根据提示框选择自己所需要的子项目（base设置为ture的项目不出现）。
+* 兼容老的项目被引入不受影响，建议针对老项目按照<font color=red>工程目录</font>的配置添加文件。
+* 如果子项目中不需要对外暴露自己的数据，store.js不必要。
 
 ## 代码提交规范
 
@@ -116,4 +120,4 @@ $ npm run start
 
 ## 结尾
 
-欢迎大家提问题，感谢大家的PR，如果觉得不错，还请帮忙加个:star:哦
+欢迎大家提问题，感谢大家的PR:) 如果觉得不错，还请帮忙加个:star:哦
