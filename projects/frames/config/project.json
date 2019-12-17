@@ -1,0 +1,11 @@
+{
+  "name": "frames",
+  "prefix": "/",
+  "main": "../src/frames.jsx",
+  "store": "../src/store.jsx",
+  "externalCss": true,
+  "vendors": true,
+  "runtime": true,
+  "port": 8111,
+  "base": true
+}

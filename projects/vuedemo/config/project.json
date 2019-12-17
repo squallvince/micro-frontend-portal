@@ -1,0 +1,7 @@
+{
+  "name": "vuedemo",
+  "prefix": "/vuedemo",
+  "main": "../src/vuedemo.js",
+  "port": 8333,
+  "base": false
+}

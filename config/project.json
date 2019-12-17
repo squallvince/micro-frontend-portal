@@ -1,7 +1,7 @@
 {
-  "name": "microfrontend-base-demo",
-  "prefix": "/microfrontend-base-demo/",
-  "main": "/microfrontend-base-demo/main.js",
-  "store": "/microfrontend-base-demo/store.js",
+  "name": "base",
+  "prefix": "/",
+  "main": "../src/base.js",
+  "port": 8233,
   "base": true
 }

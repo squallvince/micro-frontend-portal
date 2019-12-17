@@ -3,61 +3,67 @@ const { spawn } = require('child_process');
 const chalk = require('chalk');
 const path = require('path');
 
-//  看执行的方法后面是否有参数
-const argvs = process.argv.splice(2);
-const Port = require('../config/port');
-const getStat = require('./util');
+const BaseProject = require('../config/project.json');
+const { getStat, askPack, createProjectsJson } = require('./utils');
 
-
-
-//  --------------开始 启动壳子
-const baseStart = async () => {
+//  注册文件启动
+const RegisterBase = async () => {
   //  关闭当前端口的占用
-  await spawn('xl_close_port', ['-p', Port['base']], {
+  await spawn('xl_close_port', ['-p', BaseProject.port], {
     shell: process.platform === 'win32'
-  })
-  spawn('webpack-dev-server', ['--config', './webpack.dev.js', '--port', Port['base'], '--unsafe-perm'], {
+  });
+  spawn('webpack-dev-server', ['--config', './webpacks/webpack.dev.js', '--port', BaseProject.port, '--unsafe-perm'], {
     cwd: path.join(__dirname, `../`),
     stdio: 'inherit',
     shell: process.platform === 'win32'
   });
 }
 
-baseStart();
-//  --------------结束
-
-//  --------------开始 执行start
+//  所有项目启动的执行方法
 const start = async (key, value) => {
   //  关闭当前端口的占用
-  const isStat = await getStat(path.join(__dirname, `../projects/${key}`))
+  const isStat = await getStat(path.join(__dirname, `../projects/${key}`));
   if (isStat && isStat.isDirectory()) {
     await spawn('xl_close_port', ['-p', value], {
       shell: process.platform === 'win32'
-    })
-    spawn('webpack-dev-server', ['--config', './webpack.dev.js', '--port', value, '--unsafe-perm'], {
+    });
+    spawn('webpack-dev-server', ['--config', './webpacks/webpack.dev.js', '--port', value, '--unsafe-perm'], {
       cwd: path.join(__dirname, `../projects/${key}/`),
       stdio: 'inherit',
       shell: process.platform === 'win32'
     });
   } else {
-    process.stdout.write(chalk.yellow(`************ \n\n projects 文件夹中没有包含 ${chalk.red(key)} 的项目，无法启动 ${chalk.red(key)}，其他项目不影响\n\n************ \n`))
+    process.stdout.write(chalk.yellow(`************ \n\n projects 文件夹中没有包含 ${chalk.red(key)} 的项目，无法启动 ${chalk.red(key)}，其他项目不影响\n\n************ \n`));
   }
-}
-//  判断是单独打包还是全局打包
-if (argvs.length > 0) {
-  argvs.forEach(key => {
-    if (Port[key]) {
-      start(key, Port[key])
-    } else {
-      process.stdout.write(chalk.yellow(`************ \n\n projects 文件夹中没有包含 ${chalk.red(key)} 的项目\n\n************ \n\n`))
-    }
-  })
-} else {
-  Object.keys(Port).forEach(async key => {
-    if (key !== 'base') {
-      start(key, Port[key])
-    }
-  })
-}
-//  --------------结束
+};
 
+const run = async () => {
+  // 选择启动的子项目
+  const { selects, projects } = await askPack('启动');
+  // 获取选择参数
+  let Projects = [];
+  let BaseProjects = projects.filter(project => project.base);
+  selects.then(async data => {
+    data.development.forEach(key => {
+      const SelectProjects = projects.filter(project => (project.name === key));
+      Projects = Projects.concat(SelectProjects);
+    });
+    if (Projects.length > 0) {
+      // 根据选择的子项目启动
+      Projects = BaseProjects.concat(Projects);
+      createProjectsJson(Projects);
+      for (let i = 0; i < Projects.length; i++) {
+        await start(Projects[i].name, Projects[i].port);
+      }
+    } else {
+      createProjectsJson(projects);
+      projects.forEach(async project => {
+        start(project.name, project.port);
+      })
+    }
+    // 启动项目基础框架
+    await RegisterBase();
+  });
+}
+
+run();

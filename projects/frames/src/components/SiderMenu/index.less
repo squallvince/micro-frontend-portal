@@ -1,0 +1,202 @@
+.hy-sider-header {
+  padding: 16px;
+  border-bottom: 1px solid #ded7e2;
+  margin-bottom: 12px;
+  .hy-sider-header-search {
+    border: 1px solid #c5cdd8;
+    background: #f1f4f8;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    color: #555;
+    cursor: pointer;
+    margin-top: 16px;
+  }
+  .hy-sider-header-title {
+    font-size: 18px;
+    color: #252525;
+    & .anticon {
+      font-size: 14px;
+      padding-right: 8px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+  .hy-sider-search-button {
+    font-size: 14px;
+    color: #555;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background: transparent;
+    border: 0;
+    padding: 8px;
+    line-height: 1;
+    &.ant-btn:hover {
+      border: 0;
+      font-size: 14px;
+      color: #555;
+    }
+  }
+}
+// 收缩时样式
+.ant-layout-sider-collapsed {
+  .hy-sider-header .hy-sider-header-search {
+    margin-top: 0;
+  }
+  .hy-sider-menu.ant-menu-inline-collapsed .ant-menu-item,
+  &.ant-menu-vertical .ant-menu-item:not(:last-child),
+  &.ant-menu-inline .ant-menu-item:not(:last-child),
+  .ant-menu-item, .ant-menu-sub.ant-menu-inline .ant-menu-item{
+    height: 47px;
+    line-height: 47px;
+  }
+}
+.hy-sider-menu {
+    &.ant-menu-inline > .ant-menu-item,
+    .hy-sider-menu-itemGroup.ant-menu-item-group .ant-menu-item-group-list .ant-menu-item {
+      margin: 0 !important;
+      font-size: 14px;
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        height: 0;
+        width: 0;
+        background: #3da4f1;
+        top: 50%;
+        left: 0;
+        transition: height .4s;
+        transform: translateY(-50%);
+      }
+      &.ant-menu-item-selected::after {
+        width: 3px;
+        height: 24px;
+      }
+  }
+  &.ant-menu-vertical .ant-menu-item:not(:last-child),
+  &.ant-menu-inline .ant-menu-item:not(:last-child),
+  .ant-menu-item, .ant-menu-sub.ant-menu-inline .ant-menu-item, .ant-menu-submenu-title{
+    margin: 0;
+  }
+  .ant-menu-submenu-title {
+    padding-left: 16px;
+    margin: 0;
+  }
+  .ant-menu-item .anticon, .ant-menu-submenu-title .anticon {
+    margin-right: 16px;
+    font-size: 16px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .ant-layout-footer {
+    text-align: center;
+  }
+
+  .hy-sider-menu-title {
+    color: rgba(0,0,0,.4);
+  }
+  &.ant-menu-inline-collapsed {
+    .ant-menu-item, .ant-menu-submenu {
+      cursor: pointer;
+      margin: 0;
+      .anticon {
+        font-size: 20px;
+        margin-right: 24px;
+      }
+    }
+    .ant-menu-submenu {
+      padding: 3px 0;
+    }
+  }
+}
+.hy-sider-search-box {
+  .ant-tabs {
+    background: #fff;
+    min-height: 260px;
+    width: 486px;
+  }
+  .ant-tabs-nav-wrap {
+    background: #f1f4f8;
+    width: 166px;
+    .ant-tabs-nav-container {
+      border-right: 1px solid #e3e3e3;
+    }
+    .ant-tabs-nav {
+      padding: 8px 0 8px 16px;
+    }
+  }
+  .ant-tabs-vertical.ant-tabs-card.ant-tabs-left .ant-tabs-card-bar.ant-tabs-left-bar .ant-tabs-tab {
+    border-right: 1px solid #fff;
+    border-left: 2px solid #43a5ee;
+    border-radius: 0;
+    background: #fff;
+    font-size: 14px;
+    text-align: left;
+    padding: 8px 16px;
+    line-height: 1;
+    height: 35px;
+  }
+  .ant-tabs .ant-tabs-left-content {
+    padding: 16px;
+    border-left: 1px solid #e3e3e3;
+  }
+  .hy-sider-search-zone-title {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+  .hy-sider-search-zone {
+    .ant-radio-button-wrapper {
+      width: 140px;
+      text-align: left;
+      font-size: 14px;
+      padding: 6px 10px;
+      margin-bottom: 4px;
+      border-radius: 3px;
+      line-height: 1.4;
+      height: auto;
+      margin-right: 4px;
+      background-color: #fafafa;
+      position: relative;
+      .hy-sider-icon {
+        visibility: hidden;
+        position: absolute;
+        color: #fff;
+        top: -3px;
+        right: -1px;
+        font-size: 12px;
+        transform: scale(.9);
+        z-index: 4;
+        font-weight: 400;
+      }
+    }
+    .ant-radio-button-wrapper-checked{
+      color: rgba(0, 0, 0, 0.65);
+      &::after {
+        content: '';
+        position: absolute;
+        right: -1px;
+        top: -1px;
+        border: 0;
+        border-top: 20px solid #2196f3;
+        border-left: 20px solid transparent;
+      }
+      .hy-sider-icon {
+        visibility: visible;
+      }
+      .ant-radio-button-wrapper:not(:first-child)::before {
+        position: absolute;
+        top: 0;
+        left: -1px;
+        display: none;
+        width: 1px;
+        height: 100%;
+        background-color: #d9d9d9;
+        content: '';
+      }
+    }
+  }
+}

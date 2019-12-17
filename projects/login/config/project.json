@@ -1,0 +1,8 @@
+{
+  "name": "login",
+  "prefix": "/login",
+  "main": "../src/login.js",
+  "externalCss": true,
+  "port": 8241,
+  "base": false
+}

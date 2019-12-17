@@ -2,4 +2,11 @@ node_modules
 package-lock.json
 yarn.lock
 build
+projects/ardb
 projects/front
+projects/cloudsuite
+.vscode/
+.idea/
+src/projects.js
+config/projects.js
+yarn.lock

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Neo-CloudUltra</title>
+    <link id="icon-link" rel="shortcut icon" href="" type="image/png">
+    <script src='<%= htmlWebpackPlugin.options.path %>/libs.js'></script>
+    <script src='<%= htmlWebpackPlugin.options.path %>/css.min.js'></script>
+    <script src='<%= htmlWebpackPlugin.options.path %>/lodash.min.js'></script>
+  </head>
+  <body>
+    <div id="script"></div>
+    <div class="root"></div>
+    <script>
+      System.import('@portal/base/base.js');
+    </script>
+  </body>
+</html>
