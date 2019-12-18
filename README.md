@@ -1,8 +1,3 @@
-<head> 
-    <script defer src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script> 
-    <script defer src="https://use.fontawesome.com/releases/v5.12.0/js/v4-shims.js"></script> 
-</head> 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
 <div align="center">
   <img width="200" alt="micro front-end portal" src="https://raw.githubusercontent.com/squallvince/public/master/images/logo.png">
 </div>
@@ -19,12 +14,12 @@
 致力于打造一个跨框架、子应用可独立运行部署的微前端架构。
 
 
-## <i class="fa fa-code fa-sm"></i> Development
+## ⌨ Development
 
 
 通过<font color=red>NodeJS、Webpack</font>生成及支持二次构建多个SPA应用，基于<font color=red>single-spa、systemJS</font>实现此方案。
 
-## <i class="fa fa-cubes fa-sm"></i> Install
+## ♻ Install
 
 ```bash
 $ git clone git@github.com:squallvince/micro-frontend-portal.git
@@ -33,11 +28,11 @@ $ npm run installs
 $ npm run start
 ```
 
-## ✨ Features
+## <i class="fa fa-gears fa-sm"></i> Features
 1. [single-spa](https://single-spa.js.org/)
 2. [systemJS](https://github.com/systemjs/systemjs)
 
-## <i class="fa fa-cubes fa-sm"></i> 功能
+## 📄 功能
 - **通过Webpack同时启动多个子项目并注入**
 - **通过single-spa与systemJs实现dom的注入与卸载**
 - **Eslint约束规范**
@@ -45,12 +40,11 @@ $ npm run start
 - **路由分发及消息总线**
 - **集成antd组件库**
 
-## 架构
+## 📚 架构
 <img alt="micro front-end portal" src="https://raw.githubusercontent.com/squallvince/public/master/images/frames.png">
 
-## 工程结构
+## <i class="fa fa-gear fa-sm"></i> 工程结构
 ```
-.
 ├── build                    			# 打包后生成目录
 ├── config                   			# 配置信息目录
 ├── core                     			# 核心库（request/utils/register……）
@@ -82,11 +76,10 @@ $ npm run start
 ├── .gitignore                 			
 ├── package.json  
 ├── README.md    
-├── tsconfig.json
-           			
+├── tsconfig.json          			
 ```
 
-## 简要说明
+## 💬 简要说明
 
 * 需要适配的子项目请到projects文件夹中git clone下来，并按照上面文件要求添加 ***适配*** 的文件。
 * 目前子项目目录中有login和frames，可以参考其配置来处理自己添加的子项目。
@@ -110,7 +103,7 @@ $ npm run start
 * 兼容老的项目被引入不受影响，建议针对老项目按照<font color=red>工程目录</font>的配置添加文件。
 * 如果子项目中不需要对外暴露自己的数据，store.js不必要。
 
-## 代码提交规范
+## ✒ 代码提交规范
 
 | **类型**        	| **描述**
 | --------   		| :--------------------------------
@@ -124,6 +117,6 @@ $ npm run start
 | chore			| 改变构建流程、或者增加依赖库、工具等
 | revert			| 回滚到上一个版本
 
-## 结尾
+## 💡 结尾
 
-欢迎大家提问题，感谢大家的PR:) 如果觉得不错，还请帮忙加个:star:哦
+欢迎大家提问题，感谢大家的PR:) 如果觉得不错，还请帮忙加个<i class="fa fa-star fa-sm"></i>哦
