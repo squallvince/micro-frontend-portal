@@ -1,9 +1,13 @@
+<head> 
+    <script defer src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script> 
+    <script defer src="https://use.fontawesome.com/releases/v5.12.0/js/v4-shims.js"></script> 
+</head> 
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
 <div align="center">
-    <img width="200" alt="micro front-end portal" src="https://raw.githubusercontent.com/squallvince/public/master/images/logo.png">
+  <img width="200" alt="micro front-end portal" src="https://raw.githubusercontent.com/squallvince/public/master/images/logo.png">
 </div>
 
 <h1 align="center">Micro front-end portal</h1>
-----
 
 <div align="center">
   <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg">
@@ -15,12 +19,12 @@
 致力于打造一个跨框架、子应用可独立运行部署的微前端架构。
 
 
-## ⌨️ Development
+## <i class="fa fa-code fa-sm"></i> Development
 
 
 通过<font color=red>NodeJS、Webpack</font>生成及支持二次构建多个SPA应用，基于<font color=red>single-spa、systemJS</font>实现此方案。
 
-## 📦 Install
+## <i class="fa fa-cubes fa-sm"></i> Install
 
 ```bash
 $ git clone git@github.com:squallvince/micro-frontend-portal.git
@@ -33,7 +37,7 @@ $ npm run start
 1. [single-spa](https://single-spa.js.org/)
 2. [systemJS](https://github.com/systemjs/systemjs)
 
-## 🌍 功能
+## <i class="fa fa-cubes fa-sm"></i> 功能
 - **通过Webpack同时启动多个子项目并注入**
 - **通过single-spa与systemJs实现dom的注入与卸载**
 - **Eslint约束规范**
@@ -86,18 +90,20 @@ $ npm run start
 
 * 需要适配的子项目请到projects文件夹中git clone下来，并按照上面文件要求添加 ***适配*** 的文件。
 * 目前子项目目录中有login和frames，可以参考其配置来处理自己添加的子项目。
+  ```bash
   {
     "name": "name", //模块名称
-      "prefix": "/module-prefix/", //模块文件路径前缀
-      "main": "/module-prefix/main.js", //模块入口文件
-      "store": "module-prefix/store.js", //模块消息总线的文件
-      "externalCss": true, //是否要输出单独的css文件，文件名和模块名称一致
-      "vendors": true, //是否要分离第三方库，参考该项目的webpack.prod.js配置
-      "runtime": true, //如果分离第三方库请加上runtime
-      "port": 8111, //开发环境所占用的端口号
-      "base": true //是否作为基础模块运行及打包
-      // 当模块被定性为base的时候, 子项目会一直加载
-    }
+    "prefix": "/module-prefix/", //模块文件路径前缀
+    "main": "/module-prefix/main.js", //模块入口文件
+    "store": "module-prefix/store.js", //模块消息总线的文件
+    "externalCss": true, //是否要输出单独的css文件，文件名和模块名称一致
+    "vendors": true, //是否要分离第三方库，参考该项目的webpack.prod.js配置
+    "runtime": true, //如果分离第三方库请加上runtime
+    "port": 8111, //开发环境所占用的端口号
+    "base": true //是否作为基础模块运行及打包
+    // 当模块被定性为base的时候, 子项目会一直加载
+  }
+  ```
 * 项目clone到本地请先执行 <font color=red>npm run installs</font> 为所有项目安装各自依赖。
 * 安装依赖后执行 <font color=red>npm run start</font> 启动主项目及子项目，请保证配置文件中的端口号是不同的。
 * 如果需要启动或打包单独的子项目，可以根据提示框选择自己所需要的子项目（base设置为ture的项目不出现）。
