@@ -8,14 +8,11 @@
   <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg">
 </div>
 
-
 # Micro front-end portal
 
 致力于打造一个跨框架、子应用可独立运行部署的微前端架构。
 
-
 ## ⌨ Development
-
 
 通过<font color=red>NodeJS、Webpack</font>生成及支持二次构建多个SPA应用，基于<font color=red>single-spa、systemJS</font>实现此方案。
 
@@ -28,7 +25,7 @@ $ npm run installs
 $ npm run start
 ```
 
-## <i class="fa fa-gears fa-sm"></i> Features
+## ✨ Features
 1. [single-spa](https://single-spa.js.org/)
 2. [systemJS](https://github.com/systemjs/systemjs)
 
@@ -43,7 +40,7 @@ $ npm run start
 ## 📚 架构
 <img alt="micro front-end portal" src="https://raw.githubusercontent.com/squallvince/public/master/images/frames.png">
 
-## <i class="fa fa-gear fa-sm"></i> 工程结构
+## 📃 工程结构
 ```
 ├── build                    			# 打包后生成目录
 ├── config                   			# 配置信息目录
@@ -119,4 +116,4 @@ $ npm run start
 
 ## 💡 结尾
 
-欢迎大家提问题，感谢大家的PR:) 如果觉得不错，还请帮忙加个<i class="fa fa-star fa-sm"></i>哦
+欢迎大家提问题，感谢大家的PR:) 如果觉得不错，还请帮忙加个:star:哦
