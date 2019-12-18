@@ -1,5 +1,5 @@
 <div align="center">
-    <img width="200" alt="micro front-end portal" src="resources/images/logo.png">
+    <img width="200" alt="micro front-end portal" src="https://raw.githubusercontent.com/squallvince/public/master/images/logo.png">
 </div>
 
 <h1 align="center">Micro front-end portal</h1>
@@ -42,7 +42,7 @@ $ npm run start
 - **集成antd组件库**
 
 ## 架构
-<img alt="micro front-end portal" src="resources/images/frames.png">
+<img alt="micro front-end portal" src="https://raw.githubusercontent.com/squallvince/public/master/images/frames.png">
 
 ## 工程结构
 ```
