@@ -1,0 +1,18 @@
+{
+  "extends": [
+    "tslint-config-airbnb",
+    "tslint-react"
+  ],
+  "rules": {
+    "quotemark": false,
+    "semi": ["error", "always"],
+    "import-name": [
+      true,
+      {
+        "react": "React",
+        "reactDom": "ReactDOM",
+        "login": "Login"
+      }
+    ]
+  }
+}

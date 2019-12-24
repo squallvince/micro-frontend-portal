@@ -1,8 +1,16 @@
+/*
+ * @Author: Squall Sha 
+ * @Date: 2019-12-23 11:09:03 
+ * @Last Modified by: Squall Sha
+ * @Last Modified time: 2019-12-24 16:50:27
+ */
+
 /* eslint-env node */
 const path = require('path');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const isDev = (process.env.env === 'development');
 // 是否单独打包
 const isIndependence = (process.env.mode === 'independent');
@@ -12,14 +20,14 @@ const ROOT_PATH = path.resolve(__dirname, '../');
 // build路径
 const BUILD_PATH = isIndependence ? path.resolve(ROOT_PATH, './build') : path.resolve(ROOT_PATH, '../../build/projects', `${project.name}`);
 
-module.exports = {
+const CONFIG = {
   entry: {
-    [project.name]: path.resolve(__dirname, project.main)
+    [project.name]: path.resolve(__dirname, isIndependence ? '../src/index.tsx' : project.main)
   },
   output: {
     filename: isDev ? '[name].js' : '[name].[contenthash:8].js',
     library: '[name]',
-    libraryTarget: 'amd',
+    libraryTarget: isIndependence ? 'umd' : 'amd',
     path: BUILD_PATH,
   },
   mode: 'production',
@@ -27,32 +35,40 @@ module.exports = {
     rules: [
       { parser: { System: false } },
       {
-        test: /\.js[x]?$/,
+        test: /\.ts[x]?$/,
         exclude: [path.resolve(ROOT_PATH, 'node_modules')],
         enforce: 'pre',
-        use: [{
-          loader: 'eslint-loader',
-          options: {
-            formatter: require('eslint-friendly-formatter')
+        use: [
+          {
+            loader: 'ts-loader',
+          },
+          {
+            loader: 'tslint-loader'
           }
-        }]
+        ]
       },
       {
-        test: /\.js[x]?$/,
+        test: /\.(ts|js)[x]?$/,
         exclude: [path.resolve(ROOT_PATH, 'node_modules')],
         loader: 'babel-loader?cacheDirectory=true',
       },
       {
         test: /\.less$/,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader
-          },
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
               sourceMap: true,
             },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [
+                require('autoprefixer')
+              ]
+            }
           },
           {
             loader: 'less-loader',
@@ -78,6 +94,15 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.less'],
+    modules: [
+      path.resolve(ROOT_PATH, 'node_modules')
+    ],
+    alias: {
+      'components': path.resolve(ROOT_PATH, 'src/components/')
+    }
+  },
   plugins: [
     new MiniCssExtractPlugin({
       filename: isDev ? `${project.name}.css` : `${project.name}.[contenthash:8].css`
@@ -88,13 +113,29 @@ module.exports = {
       filter: (file) => {
         // 筛选需要通过SystemJS注入的文件
         // file: { path, name, isInitial, isChunk, isAsset, isModuleAsset}
-        return file.isChunk && (!file.path.endsWith('.map'))
+        return file.isChunk && (!file.path.endsWith('.map'));
       }
     }),
     new CopyWebpackPlugin([
-      { from: path.resolve(__dirname, '../config/project.json'), to: BUILD_PATH }
+      { from: path.resolve(ROOT_PATH, 'config/project.json'), to: BUILD_PATH }
     ])
   ],
   // 适合生产环境
   devtool: 'cheap-module-source-map'
 }
+
+if (isIndependence) {
+  CONFIG.plugins.push(
+    new HtmlWebpackPlugin({
+      title: 'Login',
+      minify: { // 压缩HTML文件
+        removeComments: true, // 移除HTML中的注释
+        collapseWhitespace: true, // 删除空白符与换行符
+        minifyCSS: true// 压缩内联css
+      },
+      template: path.resolve(ROOT_PATH, 'template/index.html')
+    })
+  );
+}
+
+module.exports = CONFIG;

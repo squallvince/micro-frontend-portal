@@ -45,6 +45,7 @@ function checkPortalStatus(status) {
 
 function checkPath() {
   const currentPortal = CommonUrls.getPath();
+  document.body.className = currentPortal;
   if (currentPortal !== '') {
     const status = this.getAppStatus(currentPortal);
     checkPortalStatus(status);

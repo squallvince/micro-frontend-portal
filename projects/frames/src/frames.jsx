@@ -51,7 +51,3 @@ export function mount(props) {
 export function unmount(props) {
   return reactLifecycles.unmount(props);
 }
-
-export function unload(props) {
-  return reactLifecycles.unload(props);
-}
