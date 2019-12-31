@@ -54,7 +54,7 @@ function checkPath() {
 
 //  注册项目以及启动sigle-spa
 async function baseRegister() {
-  const projects = window.PromiseFetch('projects.json', {}, 'get').then((data) => {
+  const projects = window.PromiseFetch(`//${window.location.host}/projects.json`, {}, 'get').then((data) => {
     const baseProject = data.filter(item => item.base);
     if (baseProject.length) {
       const nameSpace = [];

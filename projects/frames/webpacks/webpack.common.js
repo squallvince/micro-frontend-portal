@@ -23,7 +23,7 @@ module.exports = {
   output: {
     filename: isDev ? '[name].js' : '[name].[contenthash:8].js',
     library: '[name]',
-    libraryTarget: 'amd',
+    libraryTarget: isIndependence ? 'umd' : 'amd',
     path: BUILD_PATH,
   },
   mode: 'production',

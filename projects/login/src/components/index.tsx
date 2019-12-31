@@ -2,16 +2,20 @@
  * @Author: Squall Sha
  * @Date: 2019-12-24 17:01:31
  * @Last Modified by: Squall Sha
- * @Last Modified time: 2019-12-24 17:28:37
+ * @Last Modified time: 2019-12-25 14:53:56
  */
-import React from 'react';
-// import LoginSocial from 'components/Login/LoginSocial'
-// import LoginFormSubmit from 'components/Login/Form/FormSubmit'
+import React, { FC } from 'react';
+import { Link } from '@reach/router';
+import * as Form from './form';
 
-const LOGINFORM = () => {
+const LOGINFORM: FC = () => {
   return (
-    <section>
-      <h3>Login to your account</h3>
+    <section className="login-form">
+      <h1 className="text-header">Sign in</h1>
+      <p className="text-email">
+        New user? <Link to="/" className="text-link"> Create an account </Link>
+      </p>
+      <Form />
     </section>
   );
 };

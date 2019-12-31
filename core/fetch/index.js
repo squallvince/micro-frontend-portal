@@ -7,6 +7,8 @@ import { isAdmin, getCurrentPortal, getCurrentVDC, isVdcManager } from '../utils
 import { PORTAL } from '../constants/portals';
 import * as cookie from '../utils/tools/cookie';
 
+const LOGIN_URL = '/login';
+
 const openNotification = (type, res) => {
   window.Notification[type]({
     message: res.errorCode,
@@ -34,16 +36,18 @@ const _when403 = (res) => {
 };
 
 const checkStatus = (res, responseStatus) => {
-  if (responseStatus.code === 200) {
-    // 成功即清理前一次浏览的url
+  if (responseStatus.code === 200 && location.pathname !== LOGIN_URL) {
     window.prevHref = null;
     return res;
   }
-  if (responseStatus.code === 401) {
+  if (responseStatus.code === 200 && location.pathname === LOGIN_URL) {
+    return res;
+  }
+  if (responseStatus.code === 401 && location.pathname !== LOGIN_URL) {
     // 处理401
     _when401(res);
   }
-  if (responseStatus.code === 403) {
+  if (responseStatus.code === 403 && location.pathname !== LOGIN_URL) {
     // 处理403
     _when403(res);
   }

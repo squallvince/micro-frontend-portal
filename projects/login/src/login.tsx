@@ -2,15 +2,15 @@
  * @Author: Squall Sha
  * @Date: 2019-12-19 11:09:03
  * @Last Modified by: Squall Sha
- * @Last Modified time: 2019-12-24 17:17:04
+ * @Last Modified time: 2019-12-25 11:24:04
  */
 import React, { FC } from 'react';
-// import * as LoginForm from './components/index';
+import LOGINFORM from './components/index';
 import './less/index';
 
-const LOGINTEXT = () => {
+const LOGINTEXT: FC = () => {
   return (
-    <div className="login-item">
+    <section className="login-item login-context">
       <div className="login-container">
         <div className="context">
           <div className="context-header">
@@ -20,7 +20,7 @@ const LOGINTEXT = () => {
           <p className="context-copy">Sign in or create an account</p>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
@@ -29,6 +29,7 @@ const LOGIN: FC = () => {
     <section className="login-bg">
       <section className="login-grid">
         <LOGINTEXT />
+        <LOGINFORM />
       </section>
     </section>
   );
