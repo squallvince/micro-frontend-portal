@@ -16,6 +16,7 @@ const fsPromises = require('fs').promises;
 */
 const CONFIG = {
   output: './build/projects.json',
+  outputDir: './build',
   target: './config/project.json',
   dir: 'projects'
 };
@@ -228,10 +229,12 @@ const printTips = (msg, color = 'green') => {
 };
 
 const writeData = (file, data) => {
+  // 如果build目录不存在，先创建。
+  fs.mkdir(CONFIG.outputDir, { recursive: true }, (err) => {
+    if (err) throw err;
+  });
   fs.writeFile(file, data, 'utf8', (err) => {
-    if (err) {
-      throw err;
-    }
+    if (err) throw err;
     printTips(`********** projects.json已生成 *********** \n`, 'green');
   });
 };
