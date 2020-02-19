@@ -2,7 +2,7 @@
  * @Author: Squall Sha 
  * @Date: 2019-12-23 11:09:03 
  * @Last Modified by: Squall Sha
- * @Last Modified time: 2019-12-26 14:08:23
+ * @Last Modified time: 2020-02-19 15:54:33
  */
 
 /* eslint-env node */
@@ -11,6 +11,7 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 const isDev = (process.env.env === 'development');
 // 是否单独打包
 const isIndependence = (process.env.mode === 'independent');
@@ -28,25 +29,12 @@ const CONFIG = {
     filename: isDev ? '[name].js' : '[name].[contenthash:8].js',
     library: '[name]',
     libraryTarget: isIndependence ? 'umd' : 'amd',
-    path: BUILD_PATH,
+    path: BUILD_PATH
   },
   mode: 'production',
   module: {
     rules: [
       { parser: { System: false } },
-      {
-        test: /\.ts[x]?$/,
-        exclude: [path.resolve(ROOT_PATH, 'node_modules')],
-        enforce: 'pre',
-        use: [
-          {
-            loader: 'ts-loader',
-          },
-          {
-            loader: 'tslint-loader'
-          }
-        ]
-      },
       {
         test: /\.(ts|js)[x]?$/,
         exclude: [path.resolve(ROOT_PATH, 'node_modules')],
@@ -95,15 +83,21 @@ const CONFIG = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.less'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.less'],
     modules: [
       path.resolve(ROOT_PATH, 'node_modules')
     ],
     alias: {
-      'components': path.resolve(ROOT_PATH, 'src/components/')
+      less: path.resolve(ROOT_PATH, 'src/less/'),
+      components: path.resolve(ROOT_PATH, 'src/components/'),
+      store: path.resolve(ROOT_PATH, 'src/store/'),
+      src: path.resolve(ROOT_PATH, 'src/')
     }
   },
   plugins: [
+    new Dotenv({
+      systemvars: true
+    }),
     new MiniCssExtractPlugin({
       filename: isDev ? `${project.name}.css` : `${project.name}.[contenthash:8].css`
     }),

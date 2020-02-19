@@ -2,37 +2,41 @@
  * @Author: Squall Sha
  * @Date: 2019-12-19 11:09:03
  * @Last Modified by: Squall Sha
- * @Last Modified time: 2019-12-25 11:24:04
+ * @Last Modified time: 2020-02-18 16:41:18
  */
-import React, { FC } from 'react';
-import LOGINFORM from './components/index';
-import './less/index';
 
-const LOGINTEXT: FC = () => {
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import singleSpaReact from 'single-spa-react';
+import RootComponent from './root.component';
+import configureStore from 'store';
+
+const store = configureStore();
+
+const appWithProvider: any = () => {
   return (
-    <section className="login-item login-context">
-      <div className="login-container">
-        <div className="context">
-          <div className="context-header">
-            <div className="context-header-icon" />
-            <h1 className="context-header-title">Login</h1>
-          </div>
-          <p className="context-copy">Sign in or create an account</p>
-        </div>
-      </div>
-    </section>
+    <Provider store={store}>
+      <RootComponent />
+    </Provider>
   );
 };
 
-const LOGIN: FC = () => {
-  return (
-    <section className="login-bg">
-      <section className="login-grid">
-        <LOGINTEXT />
-        <LOGINFORM />
-      </section>
-    </section>
-  );
-};
+const reactLifecycles = singleSpaReact({
+  React,
+  ReactDOM,
+  rootComponent: appWithProvider,
+  domElementGetter: () => document.querySelector('.root') as Element
+});
 
-export default LOGIN;
+export const bootstrap = [
+  reactLifecycles.bootstrap
+];
+
+export const mount = [
+  reactLifecycles.mount
+];
+
+export const unmount = [
+  reactLifecycles.unmount
+];

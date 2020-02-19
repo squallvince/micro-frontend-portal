@@ -6,7 +6,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-// import classNames from 'classnames';
 // 大组件可以用loadable来分离
 // import loadable from '@loadable/component';
 import { Layout } from 'antd';

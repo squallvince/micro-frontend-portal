@@ -1,31 +1,35 @@
 {
   "compilerOptions": {
-    "outDir": "./build",
-    "module": "esnext",
-    "target": "esnext",
-    "lib": ["esnext", "dom"],
-    "sourceMap": true,
-    "baseUrl": ".",
     "jsx": "react",
-    // 使TypeScript识别es6 的 export default
-    "allowSyntheticDefaultImports": true,
+    "module": "commonjs",
+    "target": "ES5",
+    "baseUrl": "./src/",
+    "outDir": "./build/",
     "moduleResolution": "node",
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true,
+    "lib": [
+      "es2015",
+      "dom.iterable",
+      "es2016.array.include",
+      "es2017.object",
+      "dom"
+    ],
     "allowJs": true,
-    "skipLibCheck": true,
+    "noEmit": true,
     "strict": true,
-    "experimentalDecorators": true,
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  },
-  "exclude": [
-    "node_modules",
-    "build",
-    "scripts",
-    "webpacks"
-  ]
+    "importHelpers": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "strictNullChecks": true,
+    "removeComments": true,
+    "alwaysStrict": true,
+    "keyofStringsOnly": true,
+    "allowUnreachableCode": false,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true
+  }
 }

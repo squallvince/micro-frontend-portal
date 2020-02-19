@@ -61,5 +61,5 @@ module.exports = {
   ],
   // 适合生产环境
   devtool: 'cheap-module-source-map',
-  externals: ['vue', 'vue-router']
+  // externals: ['vue', 'vue-router']
 }

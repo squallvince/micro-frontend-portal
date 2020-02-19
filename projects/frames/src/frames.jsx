@@ -11,8 +11,6 @@ import { Provider } from 'react-redux';
 import singleSpaReact from 'single-spa-react';
 import RootComponent from './root.component';
 import setPublicPath from './set-public-path';
-// import { property } from 'lodash';
-// import setPublicPath from './set-public-path';
 
 const appWithProvider = (spa) => {
   return (

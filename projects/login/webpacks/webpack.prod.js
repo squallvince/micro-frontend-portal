@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const Merge = require('webpack-merge');
 const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const Config = require('./webpack.common');
 
 module.exports = Merge(Config, {

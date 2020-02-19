@@ -101,13 +101,13 @@ $ npm run start
 
 ## ✒ 将CloudSuite0.1集成进入的步骤
 
-1. 进入micro-frontends-portal > projects > front(cs0.1clone下来的默认文件夹名，可以修改)。 
+1. 进入micro-frontends-portal > projects > xxx。 
 2. 创建config文件夹，并创建project.json文件：
     ```bash
     {
-      "name": "front",
-      "prefix": "/front",
-      "main": "../src/front.js",
+      "name": "xxx",
+      "prefix": "/xxx",
+      "main": "../src/xxx.jsx",
       "externalCss": true,
       "vendors": true,
       "runtime": true,
@@ -115,102 +115,9 @@ $ npm run start
       "base": false
     }
     ```
-3. 创建webpacks文件夹，再依次创建webpack.common.js，webpack.dev.js，webpack.prod.js。
-4. webpack.common.js基于cs0.1原配置项“deploy>webpack.base.conf.js”修改：
-    ```bash
-    // 是否单独打包
-    const isIndependence = (process.env.mode === 'independent');
-    const project = require('../config/project.json');
-    entry: {
-      [project.name]: path.resolve(__dirname, project.main)
-    },
-    output: {
-      filename: isDev ? '[name].js' : '[name].[contenthash:8].js',
-      library: '[name]',
-      libraryTarget: isIndependence ? 'umd' : 'amd',
-      path: BUILD_PATH
-    },
-    ```
-5. webpack.dev.js基于cs0.1原配置项“deploy>webpack.dev.conf.js”修改，只做删减以适配框架启动，如需深刻了解，请参看代码。
-6. webpack.prod.js完全不同于cs0.1原配置项“deploy>webpack.prod.conf.js”，因为最终部署的文件生成规则不一样，如需深刻了解，请参看代码。
-7. package.json中增加一条单独打包的命令，在cs0.1项目中其实不是必须，更适于与需要单独部署的业务项目，此条命令会生成适合微前端框架的对应静态文件。
-   ```bash
-    "build:micro": "cross-env env=production mode=independent webpack --config ./webpacks/webpack.prod.js --progress --colors",
-    ```
-8. 进入src目录下，并创建front.js（config/[project.json中的main关键字）及root.component.js（基于index.js修改）
-   front.js为适配single-spa的注册文件，必须引入，因为cs0.1是react技术栈，所以此处引用的single-spa是“single-spa-react”。
-   ```bash
-    import React from 'react';
-    import ReactDOM from 'react-dom';
-    import singleSpaReact from 'single-spa-react';
-    import rootComponent from './root.component';
-
-    const domElementGetter = () => {
-      const el = document.querySelector('#app');
-      return el;
-    };
-
-    const reactLifecycles = singleSpaReact({
-      React,
-      ReactDOM,
-      rootComponent,
-      // A boolean that indicates if single-spa-react should warn when the rootComponent does not implement componentDidCatch.
-      suppressComponentDidCatchWarning: true,
-      domElementGetter
-    });
-
-    export function bootstrap(props) {
-      return reactLifecycles.bootstrap(props);
-    }
-
-    export function mount(props) {
-      return reactLifecycles.mount(props);
-    }
-
-    export function unmount(props) {
-      return reactLifecycles.unmount(props);
-    }
-    ```
-    root.component.js基于index.js修改，为了不影响原来的代码逻辑，所以只增加全局变量<font color=red>window.hasFrames = true</font>;用于判断是否被加载到微前端框架中，并将此文件export给front.js加载。
-   ```bash
-    window.hasFrames = true;
-    export default class Root extends React.Component {
-      state = {
-        hasError: false
-      }
-      
-      componentDidCatch (error, info) {
-        this.setState({hasError: true});
-      }
-      
-      render () {
-        return (
-          this.state.hasError ? (
-            <div>
-              Error
-            </div>
-        ): (
-            <Router>
-              <Route path="/front">
-                <Provider store={store}>
-                  <IntlProvider
-                    locale={INTL_LOCALE[window.LangCode]}
-                    messages={messages}
-                  >
-                    <ConnectedRouter history={history}>
-                    {renderRoutes(routes)}
-                    </ConnectedRouter>
-                  </IntlProvider>
-                </Provider>
-              </Route>
-            </Router>
-          )
-        )
-      }
-    }
-    ```
-9. 前8步完成后，项目就被集成到微前端中了，后续是cs0.1的细节修改，这部分请参考：http://gitlab.chinac.com/Haihe/front/commits/cs-0.1-migrate
-
+3. 创建webpacks文件夹，再依次创建webpack.common.js，webpack.dev.js，webpack.prod.js（可参考frames或者login项目的配置）。
+4. 进入src目录下，并创建xxx.jsx（config/[project.json中的main关键字）及root.component.jsx（可参考frames或者login项目）。
+5. 前4步完成后，子项目即完成配置。
 ## 💡 结尾
 
 欢迎大家提问题，感谢大家的PR:) 如果觉得不错，还请帮忙加个:star:哦
