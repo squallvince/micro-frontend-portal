@@ -55,10 +55,12 @@ function checkPath() {
 //  注册项目以及启动sigle-spa
 async function baseRegister() {
   const projects = window.PromiseFetch(`//${window.location.host}/projects.json`, {}, 'get').then((data) => {
-    const baseProject = data.filter(item => item.base);
-    if (baseProject.length) {
+    const baseProjects = data.filter(item => item.base);
+    const subProjects = data.filter(item => !item.base);
+    window.subProjects = subProjects;
+    if (baseProjects.length) {
       const nameSpace = [];
-      baseProject.forEach((item, idx) => {
+      baseProjects.forEach((item, idx) => {
         nameSpace.push(`base${idx}`);
         nameSpace[idx] = registerApp({
           name: item.name,

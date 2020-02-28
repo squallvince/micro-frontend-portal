@@ -1,5 +1,6 @@
 /* eslint-env node */
 const Webpack = require('webpack');
+const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const Config = require('./webpack.common');
 const DevServerConfig = require('../config/dev-config');
 const InsertHtmlPlugin = require('./insertHtmlCode');
@@ -26,6 +27,12 @@ Config.plugins.push(new InsertHtmlPlugin({
     content: { imports: Imports }
   }]
 }));
+Config.plugins.push(
+  new OpenBrowserPlugin({
+    url: `http://localhost:${BaseProject.port}/`,
+    delay: 10 * 1000
+  })
+);
 Config.devServer = DevServerConfig.devServer;
 Config.mode = 'development';
 Config.devtool = 'cheap-module-eval-source-map';

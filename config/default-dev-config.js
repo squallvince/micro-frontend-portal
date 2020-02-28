@@ -8,7 +8,7 @@ module.exports = {
     contentBase: './build',
     historyApiFallback: true,
     hot: true,
-    open: true,
+    overlay: true,
     compress: true,
     headers: {
       'Access-Control-Allow-Origin': '*'

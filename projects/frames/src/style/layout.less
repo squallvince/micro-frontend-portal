@@ -1,53 +1,9 @@
-@base-color: hsla(0,0%,100%,.65);
-@hy-prefix: hy;
-@highlight-color: #3da4f1;
-.root {
-  height: 100vh;
-  background: #fff;
-  -webkit-tap-highlight-color: transparent;
-}
-.@{hy-prefix}-container {
-  .ant-layout-sider {
-    height: calc(100vh - 56px);
-    max-height: calc(100vh - 56px);
-    position: relative;
-  }
-  .hy-sider-menu-button {
-    position: absolute;
-    top: 50%;
-    left: 100%;
-    background: #fff;
-    height: 45px;
-    transform: translateY(-50%);
-    border-radius: 0 3px 3px 0;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    box-shadow: 1px 2px 2px rgba(0,0,0,.05);
-    z-index: 1000;
+.ant-layout {
+  &.ant-layout-has-sider {
+    height: calc(100vh - 131px); 
   }
 }
 
-:global {
-  .anticon {
-    display: inline-block;
-    vertical-align: middle;
-  }
-  .ant-tooltip.ant-menu-inline-collapsed-tooltip.ant-tooltip-placement-right {
-    .anticon {
-      display: none;
-    }
-  }
-  .ant-menu-vertical.ant-menu-sub .ant-menu-item, .ant-menu-vertical-left.ant-menu-sub .ant-menu-item, .ant-menu-vertical-right.ant-menu-sub .ant-menu-item {
-    margin: 0!important;
-  }
-  .ant-popover-inner-content {
-    padding: 0;
-  }
-  .ant-menu-submenu-popup {
-    background: transparent;
-  }
-  .ant-menu-item:hover, .ant-menu-item-active, .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open, .ant-menu-submenu-active, .ant-menu-submenu-title:hover {
-    background-color: #d4d9e1;
-  }
+.footer {
+  text-align: center;
 }

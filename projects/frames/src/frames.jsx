@@ -8,14 +8,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { CookiesProvider } from 'react-cookie';
 import singleSpaReact from 'single-spa-react';
 import RootComponent from './root.component';
 import setPublicPath from './set-public-path';
 
 const appWithProvider = (spa) => {
+  console.log(spa);
   return (
-    <Provider store={spa.store.storeInstance} globalEventDistributor={spa.globalEventDistributor}>
-      <RootComponent />
+    <Provider store={spa.store.storeInstance}>
+      <CookiesProvider>
+        <RootComponent globalEventDistributor={spa.globalEventDistributor} />
+      </CookiesProvider>
     </Provider>
   );
 };

@@ -3,7 +3,6 @@
  * @Date: 2019-11-20 15:30:00
  */
 
-// import { createStore, combineReducers } from 'redux';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
 import { createBrowserHistory } from 'history';

@@ -12,24 +12,6 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@loadable/component": "^5.11.0",
-    "@reach/router": "1.2.1",
-    "antd": "^3.24.3",
-    "classnames": "^2.2.6",
-    "history": "^4.10.1",
-    "moment": "^2.24.0",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "react-redux": "^7.1.1",
-    "react-router": "4.3.1",
-    "react-router-dom": "^5.1.2",
-    "redux": "^4.0.4",
-    "redux-observable": "^1.2.0",
-    "rxjs": "^6.5.3",
-    "rxjs-compat": "^6.5.3",
-    "single-spa-react": "2.8.1"
-  },
   "browserslist": [
     "last 2 versions",
     "Firefox ESR",
@@ -83,7 +65,6 @@
     "rimraf": "^3.0.0",
     "rucksack-css": "^1.0.2",
     "style-loader": "^1.0.0",
-    "svg-loader": "0.0.2",
     "terser-webpack-plugin": "^2.2.1",
     "url-loader": "^2.2.0",
     "webpack": "4.17.1",
@@ -91,5 +72,25 @@
     "webpack-dev-server": "^3.3.1",
     "webpack-manifest-plugin": "^2.2.0",
     "webpack-merge": "^4.2.2"
+  },
+  "dependencies": {
+    "@loadable/component": "^5.11.0",
+    "@reach/router": "1.2.1",
+    "antd": "^3.24.3",
+    "classnames": "^2.2.6",
+    "clsx": "^1.1.0",
+    "history": "^4.10.1",
+    "moment": "^2.24.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.11.0",
+    "react-cookie": "^4.0.3",
+    "react-dom": "^16.11.0",
+    "react-redux": "^7.1.1",
+    "react-router": "4.3.1",
+    "redux": "^4.0.4",
+    "redux-observable": "^1.2.0",
+    "rxjs": "^6.5.3",
+    "rxjs-compat": "^6.5.3",
+    "single-spa-react": "2.8.1"
   }
 }

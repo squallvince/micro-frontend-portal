@@ -67,6 +67,7 @@ const eslintrc = {
     'eol-last': 'error', //文件以换行符结束
     'no-label-var': 2, //不允许标签和变量同名
     'strict': [2, 'function'], //使用严格模式
+    'class-methods-use-this': 'off',
     quotes: [
       'error',
       'single',

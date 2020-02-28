@@ -127,10 +127,13 @@ module.exports = {
     extensions: ['.js', '.jsx', '.less', '.css'],
     modules: [
       ROOT_PATH + '/node_modules'
-    ]
-    // alias: {
-    //   'Cmpt': SRC_PATH + '/components'
-    // }
+    ],
+    alias: {
+      style: path.resolve(ROOT_PATH, 'src/style/'),
+      components: path.resolve(ROOT_PATH, 'src/components/'),
+      store: path.resolve(ROOT_PATH, 'src/store/'),
+      src: path.resolve(ROOT_PATH, 'src/')
+    }
   },
   plugins: [
     new MiniCssExtractPlugin({

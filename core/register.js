@@ -60,7 +60,6 @@ export async function registerApp(params) {
     let storeModule = {};
     let cssModule = {};
     let customProps = { globalEventDistributor: globalEventDistributor };
-    console.log('params', params);
     // 尝试导入vendor
     try {
       vendorsModule = params.vendors ? await SystemJS.import(params.vendors) : {};
