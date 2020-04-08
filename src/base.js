@@ -39,7 +39,7 @@ function bindCommon() {
 
 function checkPortalStatus(status) {
   if (!status || status !== 'MOUNTED') {
-    // window.singleSpaNavigate('/errors/404');
+    // window.singleSpaNavigate('./404');
   }
 }
 
@@ -57,7 +57,8 @@ async function baseRegister() {
   const projects = window.PromiseFetch(`//${window.location.host}/projects.json`, {}, 'get').then((data) => {
     const baseProjects = data.filter(item => item.base);
     const subProjects = data.filter(item => !item.base);
-    window.subProjects = subProjects;
+    const menuProjects = data.filter(item => !item.base && item.name !== 'login');
+    window.menuProjects = menuProjects;
     if (baseProjects.length) {
       const nameSpace = [];
       baseProjects.forEach((item, idx) => {

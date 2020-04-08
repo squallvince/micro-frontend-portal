@@ -3,7 +3,6 @@ const path = require('path');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const rucksack = require('rucksack-css');
 const isDev = (process.env.env === 'development');
 // 是否单独打包
 const isIndependence = (process.env.mode === 'independent');
@@ -75,33 +74,6 @@ module.exports = {
         }]
       },
       {
-        test: /\.css$/,
-        exclude: [path.resolve(ROOT_PATH, 'node_modules')],
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true,
-              options: {
-                modules: true,
-                localIdentName: '[path][name]__[local]',
-              },
-            },
-          },
-          {
-            loader: 'postcss-loader',
-            options: Object.assign(
-              {},
-              rucksack(),
-              {
-                sourceMap: true
-              }
-            ),
-          },
-        ],
-      },
-      {
         test: /\.less$/,
         use: [
           MiniCssExtractPlugin.loader,
@@ -110,6 +82,14 @@ module.exports = {
             options: {
               sourceMap: true,
             },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [
+                require('autoprefixer')
+              ]
+            }
           },
           {
             loader: 'less-loader',

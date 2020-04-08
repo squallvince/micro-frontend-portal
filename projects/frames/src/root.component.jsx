@@ -2,7 +2,7 @@
  * @Author: Squall Sha
  * @Date: 2020-02-21 16:04:55
  * @Last Modified by: Squall Sha
- * @Last Modified time: 2020-02-27 14:34:07
+ * @Last Modified time: 2020-03-11 11:02:53
  */
 
 /* eslint react/no-unused-state: 0 */
@@ -13,13 +13,14 @@ import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 // 大组件可以用loadable来分离
 // import loadable from '@loadable/component';
-import { Layout, Breadcrumb } from 'antd';
+import { Layout } from 'antd';
 import { fetchRequest } from './actions';
 import Header from './layout/header';
 import Sider from './layout/sider';
+import Main from './layout/main';
 import './style/index.less';
 
-const { Content, Footer } = Layout;
+const { Footer } = Layout;
 
 // const HeaderLayout = loadable(() => import('./components/Header'));
 
@@ -35,11 +36,12 @@ class Frames extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log(props);
+    console.log(props.globalEventDistributor);
     this.state = {
       // token: cookies.get('token') || ''
       // collapsed: false
     };
+    this.handleClickLogo = this.handleClickLogo.bind(this);
   }
 
   checkAuth() {
@@ -48,6 +50,10 @@ class Frames extends React.Component {
     if (!token) {
       window.singleSpaNavigate('login');
     }
+  }
+
+  handleClickLogo() {
+    // console.log(123);
   }
 
   componentDidMount() {
@@ -63,25 +69,17 @@ class Frames extends React.Component {
   render() {
     return (
       <Layout>
-        <Header className="header" />
+        <Header
+          className="header"
+          onClick={this.handleClickLogo}
+        />
         <Layout>
-          <Sider className="sider" />
-          <Layout style={{ padding: '0 24px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
-              <Breadcrumb.Item>Overview</Breadcrumb.Item>
-            </Breadcrumb>
-            <Content
-              style={{
-                background: '#fff',
-                padding: 24,
-                margin: 0,
-                minHeight: 280
-              }}
-            >
-              Content
-            </Content>
-          </Layout>
+          <Sider
+            className="sider"
+          />
+          <Main
+            className="main"
+          />
         </Layout>
         <Footer className="footer">Micro Frontend Portal ©2020 Created by Squall Sha</Footer>
       </Layout>

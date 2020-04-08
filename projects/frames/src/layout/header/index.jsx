@@ -2,10 +2,11 @@
  * @Author: Squall Sha
  * @Date: 2020-02-21 16:04:55
  * @Last Modified by: Squall Sha
- * @Last Modified time: 2020-02-26 16:04:31
+ * @Last Modified time: 2020-03-04 16:39:21
  */
 
-import React, { useState } from 'react';
+import React from 'react';
+// import React, { useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Row, Col } from 'antd';
@@ -16,8 +17,8 @@ import './index.less';
 const Header = props => {
   const { className, onSidebarOpen, ...rest } = props;
 
-  const [notifications] = useState([]);
-  console.log(notifications);
+  // const [notifications] = useState([]);
+  // console.log(notifications);
 
   return (
     <header className={clsx('clearfix', className)}>

@@ -18,6 +18,7 @@
     "@babel/preset-react": "^7.7.0",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.2.0",
     "eslint": "^6.6.0",
     "eslint-config-airbnb": "^18.0.1",
@@ -36,7 +37,8 @@
     "eslint-plugin-vue": "^6.0.1",
     "eslint-tinker": "^0.5.0",
     "html-webpack-plugin": "^3.2.0",
-    "style-loader": "^1.0.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "postcss-loader": "^3.0.0",
     "url-loader": "^2.2.0",
     "vue-loader": "^15.7.2",
     "vue-style-loader": "^4.1.2",
@@ -44,10 +46,10 @@
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.8.2",
+    "webpack-manifest-plugin": "^2.2.0",
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "clean-webpack-plugin": "^3.0.0",
     "single-spa-vue": "^1.5.4",
     "vue": "^2.6.10",
     "vue-router": "^3.1.3"
