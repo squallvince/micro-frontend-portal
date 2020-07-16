@@ -2,7 +2,7 @@
  * @Author: Squall Sha
  * @Date: 2020-02-21 16:04:55
  * @Last Modified by: Squall Sha
- * @Last Modified time: 2020-03-11 11:02:53
+ * @Last Modified time: 2020-06-08 11:08:27
  */
 
 /* eslint react/no-unused-state: 0 */
@@ -36,24 +36,33 @@ class Frames extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log(props.globalEventDistributor);
+    // console.log(props.globalEventDistributor);
     this.state = {
       // token: cookies.get('token') || ''
       // collapsed: false
     };
     this.handleClickLogo = this.handleClickLogo.bind(this);
+    this.changeBreadcrumb = this.changeBreadcrumb.bind(this);
   }
 
   checkAuth() {
     const { cookies } = this.props;
     const token = cookies.get('token');
     if (!token) {
-      window.singleSpaNavigate('login');
+      window.singleSpaNavigate('/login');
     }
   }
 
   handleClickLogo() {
-    // console.log(123);
+    const selectItems = document.querySelectorAll('.ant-menu-item-selected');
+    if (selectItems.length > 0) {
+      selectItems[0].classList.remove('ant-menu-item-selected');
+    }
+  }
+
+  changeBreadcrumb() {
+    const paths = location.pathname.split('/');
+    console.log(paths);
   }
 
   componentDidMount() {
@@ -61,8 +70,8 @@ class Frames extends React.Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    // console.log('nextProps', nextProps);
-    // console.log('nextProps', prevState);
+    console.log('nextProps', nextProps);
+    console.log('nextProps', prevState);
     return null;
   }
 
@@ -76,6 +85,7 @@ class Frames extends React.Component {
         <Layout>
           <Sider
             className="sider"
+            changeBreadcrumb={this.changeBreadcrumb}
           />
           <Main
             className="main"

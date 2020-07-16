@@ -4,6 +4,7 @@
  */
 /* eslint-disable */
 import * as singleSpa from 'single-spa';
+import PubSub from 'pubsub-js';
 import { registerApp } from '../core/register';
 import PromiseFetch from '../core/fetch';
 import * as CommonUrls from '../core/utils/tools/url';
@@ -50,6 +51,11 @@ function checkPath() {
     const status = this.getAppStatus(currentPortal);
     checkPortalStatus(status);
   }
+}
+
+function listenUrl() {
+  console.log('------', window.location.pathname);
+  PubSub.publish('url:popstate');
 }
 
 //  注册项目以及启动sigle-spa
@@ -107,6 +113,10 @@ async function baseRegister() {
 
   // 监听路有切换是否加载到对应模块
   window.addEventListener('single-spa:app-change', checkPath.bind(singleSpa));
+
+  // 监听路由变化
+  window.addEventListener('load', listenUrl('load'), false);
+  window.addEventListener('popstate', listenUrl('popstate'), false);
 }
 
 bindCommon();

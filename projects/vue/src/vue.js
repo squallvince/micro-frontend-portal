@@ -1,3 +1,4 @@
+// import './set-public-path';
 import Vue from 'vue';
 import singleSpaVue from 'single-spa-vue';
 import App from './App.vue';
@@ -8,7 +9,7 @@ const vueLifecycles = singleSpaVue({
   appOptions: {
     router,
     render: h => h(App),
-    el: '#app'
+    el: '.content-section'
   }
 });
 
@@ -17,11 +18,11 @@ export const bootstrap = [
 ];
 
 export function mount(props) {
-  console.log('----------mount', props);
+  // console.log('----------mount', props);
   return vueLifecycles.mount(props);
 }
 
 export function unmount(props) {
-  console.log('----------unmount', props);
+  // console.log('----------unmount', props);
   return vueLifecycles.unmount(props);
 }
