@@ -1,8 +1,8 @@
 /*
  * @Author: Squall Sha 
  * @Date: 2019-12-23 11:09:03 
- * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2020-10-14 15:38:36
+ * @Last Modified by: Squall Sha
+ * @Last Modified time: 2020-10-16 15:32:44
  */
 
 /* eslint-env node */
@@ -66,6 +66,19 @@ const CONFIG = {
             },
           },
         ],
+      },
+      {//antd样式处理
+        test: /\.css$/,
+        exclude: /src/,
+        use:[
+          { loader: 'style-loader'},
+          {
+            loader: 'css-loader',
+            options:{
+                importLoaders:1
+            }
+          }
+        ]
       },
       {
         test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
