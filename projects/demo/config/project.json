@@ -1,0 +1,10 @@
+{
+  "name": "demo",
+  "prefix": "/demo",
+  "main": "../src/demo.tsx",
+  "externalCss": false,
+  "vendors": true,
+  "runtime": true,
+  "port": 8244,
+  "base": false
+}

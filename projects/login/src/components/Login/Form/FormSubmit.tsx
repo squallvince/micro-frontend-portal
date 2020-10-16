@@ -145,7 +145,7 @@ const FormSubmit: React.FC<IFormSubmitProps> = props => {
     } else {
       name === 'login'
         ? setError(prevState => ({
-            ...prevState,
+            ...prevState, 
             login: ''
           }))
         : setError(prevState => ({
@@ -163,6 +163,8 @@ const FormSubmit: React.FC<IFormSubmitProps> = props => {
           password: value
         }));
   };
+
+  const isDisabled = error.login || error.password;
 
   return (
     <form onSubmit={handleSubmit}>
@@ -191,7 +193,7 @@ const FormSubmit: React.FC<IFormSubmitProps> = props => {
       <InputSubmit
         type="submit"
         value="Sign in"
-        disabled={error.login || error.password}
+        disabled={isDisabled}
       />
       {renderRedirect()}
     </form>

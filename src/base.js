@@ -4,7 +4,7 @@
  */
 /* eslint-disable */
 import * as singleSpa from 'single-spa';
-import PubSub from 'pubsub-js';
+// import PubSub from 'pubsub-js';
 import { registerApp } from '../core/register';
 import PromiseFetch from '../core/fetch';
 import * as CommonUrls from '../core/utils/tools/url';
@@ -55,14 +55,13 @@ function checkPath() {
 
 function listenUrl() {
   console.log('------', window.location.pathname);
-  PubSub.publish('url:popstate');
+  // PubSub.publish('url:popstate');
 }
 
 //  注册项目以及启动sigle-spa
 async function baseRegister() {
   const projects = window.PromiseFetch(`//${window.location.host}/projects.json`, {}, 'get').then((data) => {
     const baseProjects = data.filter(item => item.base);
-    const subProjects = data.filter(item => !item.base);
     const menuProjects = data.filter(item => !item.base && item.name !== 'login');
     window.menuProjects = menuProjects;
     if (baseProjects.length) {
