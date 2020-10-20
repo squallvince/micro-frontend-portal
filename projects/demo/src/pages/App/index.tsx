@@ -2,12 +2,12 @@
  * @Author: Squall Sha 
  * @Date: 2020-10-14 15:48:50 
  * @Last Modified by: Squall Sha
- * @Last Modified time: 2020-10-16 15:43:11
+ * @Last Modified time: 2020-10-20 10:49:05
  */
 
 // import React from 'react';
 import React, { FC } from 'react';
-import { Row, Col } from 'antd';
+import { Row, Col, Card } from 'antd';
 import { Chart, LineAdvance, Interval } from 'bizcharts';
 import 'antd/dist/antd.css';
 
@@ -185,6 +185,11 @@ const App: FC = () => {
         </Chart>
       </Col>
     </Row>
+	<Card title="Default size card" extra={<a href="#">More</a>} style={{ width: 300 }}>
+      <p>Card content</p>
+      <p>Card content</p>
+      <p>Card content</p>
+    </Card>
   </>
   );
 };

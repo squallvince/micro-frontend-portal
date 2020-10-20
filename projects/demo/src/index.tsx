@@ -8,20 +8,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { renderRoutes } from 'react-router-config';
-import { ConnectedRouter } from 'connected-react-router';
+// import { renderRoutes } from 'react-router-config';
+// import { ConnectedRouter } from 'connected-react-router';
 import { Normalize } from 'styled-normalize';
-import routes from './routes';
-import configureStore, { history } from 'store';
+// import routes from './routes';
+import App from 'pages/App';
+import configureStore from 'store';
 
 const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
     <Normalize />
-    <ConnectedRouter history={history}>
-      {renderRoutes(routes)}
-    </ConnectedRouter>
+    <App />
   </Provider>,
   document.getElementById('root')
 );

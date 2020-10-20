@@ -10,3 +10,4 @@ projects/cloudsuite
 src/projects.js
 config/projects.js
 yarn.lock
+.DS_Store

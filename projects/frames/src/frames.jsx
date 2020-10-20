@@ -14,6 +14,7 @@ import RootComponent from './root.component';
 import setPublicPath from './set-public-path';
 
 const appWithProvider = (spa) => {
+  console.log(spa);
   return (
     <Provider store={spa.store.storeInstance}>
       <CookiesProvider>
