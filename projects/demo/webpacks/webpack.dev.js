@@ -2,7 +2,7 @@
  * @Author: Squall Sha 
  * @Date: 2019-12-23 16:08:40 
  * @Last Modified by: Squall Sha
- * @Last Modified time: 2020-10-20 14:50:05
+ * @Last Modified time: 2020-10-21 11:26:56
  */
 
 /* eslint-env node */
@@ -12,6 +12,7 @@ const isIndependence = (process.env.mode === 'independent');
 config.plugins.push(new webpack.NamedModulesPlugin());
 config.plugins.push(new webpack.HotModuleReplacementPlugin());
 config.devServer = {
+  historyApiFallback: true,
   headers: {
     "Access-Control-Allow-Origin": "*",
   }

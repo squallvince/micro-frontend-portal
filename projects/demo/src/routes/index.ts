@@ -2,20 +2,25 @@
  * @Author: Squall Sha 
  * @Date: 2020-10-15 17:25:00 
  * @Last Modified by: Squall Sha
- * @Last Modified time: 2020-10-20 14:50:11
+ * @Last Modified time: 2020-10-21 14:43:23
  */
 
-import { RouteProps } from 'react-router-dom';
 import App from 'pages/App';
 import List from 'pages/App/List';
 
-const routes: RouteProps[] = [
+let prefix = '/';
+if (process.env.mode !== 'independent') {
+  prefix = '/demo/';
+}
+
+const routes = [
   {
-    component: App as any,
-    path: '/'
+    path: `${prefix}`,
+    exact: true,
+    component: App as any
   },
   {
-    path: '/list',
+    path: `${prefix}list`,
     component: List as any
   }
 ];

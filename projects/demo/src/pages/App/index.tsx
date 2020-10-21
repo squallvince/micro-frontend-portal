@@ -2,14 +2,13 @@
  * @Author: Squall Sha 
  * @Date: 2020-10-14 15:48:50 
  * @Last Modified by: Squall Sha
- * @Last Modified time: 2020-10-20 10:49:05
+ * @Last Modified time: 2020-10-21 10:58:07
  */
 
 // import React from 'react';
 import React, { FC } from 'react';
-import { Row, Col, Card } from 'antd';
+import { Row, Col } from 'antd';
 import { Chart, LineAdvance, Interval } from 'bizcharts';
-import 'antd/dist/antd.css';
 
 // 数据源
 const LineData = [
@@ -167,42 +166,8 @@ const App: FC = () => {
           </Chart>
         </Col>
       </Row>
-      <Row>
-      <Col span={12} order={1}>
-        <Chart padding={[10, 20, 50, 40]} autoFit height={300} data={LineData} >
-          <LineAdvance
-            shape="smooth"
-            point
-            area
-            position="month*temperature"
-            color="city"
-          />
-        </Chart>
-      </Col>
-      <Col span={12} order={2}>
-        <Chart height={300} autoFit data={BarData} >
-          <Interval position="year*sales"  />
-        </Chart>
-      </Col>
-    </Row>
-	<Card title="Default size card" extra={<a href="#">More</a>} style={{ width: 300 }}>
-      <p>Card content</p>
-      <p>Card content</p>
-      <p>Card content</p>
-    </Card>
-  </>
+    </>
   );
 };
-
-// class AppComponent extends React.Component<any, any> {
-
-//   render() {
-//     return (
-//       <div className='App'>
-//         <Button type='primary'>Button</Button>
-//       </div>
-//     );
-//   }
-// }
 
 export default App;

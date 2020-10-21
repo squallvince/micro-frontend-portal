@@ -2,11 +2,12 @@
  * @Author: Squall Sha 
  * @Date: 2019-12-23 11:09:03 
  * @Last Modified by: Squall Sha
- * @Last Modified time: 2020-10-16 15:32:44
+ * @Last Modified time: 2020-10-21 11:35:03
  */
 
 /* eslint-env node */
 const path = require('path');
+const webpack = require('webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -67,15 +68,13 @@ const CONFIG = {
           },
         ],
       },
-      {//antd样式处理
+      {
         test: /\.css$/,
-        exclude: /src/,
         use:[
-          { loader: 'style-loader'},
           {
             loader: 'css-loader',
             options:{
-                importLoaders:1
+              importLoaders:1
             }
           }
         ]
@@ -96,7 +95,7 @@ const CONFIG = {
     ]
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx', '.less'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
     modules: [
       path.resolve(ROOT_PATH, 'node_modules')
     ],
@@ -126,7 +125,10 @@ const CONFIG = {
     }),
     new CopyWebpackPlugin([
       { from: path.resolve(ROOT_PATH, 'config/project.json'), to: BUILD_PATH }
-    ])
+    ]),
+    new webpack.DefinePlugin({
+      isIndependence: JSON.stringify(isIndependence)
+    })
   ],
   // 适合生产环境
   devtool: 'cheap-module-source-map'
